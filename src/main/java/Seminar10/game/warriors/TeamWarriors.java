@@ -1,13 +1,10 @@
 package Seminar10.game.warriors;
 
-import Seminar10.game.protection.Protection;
-import Seminar10.game.weapon.Weapon;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class TeamWarriors<T extends Warrior<Weapon, Protection>> implements Iterable<T> {
+public class TeamWarriors<T extends Warrior> implements Iterable<T> {
     List<T> warriors = new ArrayList<>();
 
     public void addWarrior(T t) {

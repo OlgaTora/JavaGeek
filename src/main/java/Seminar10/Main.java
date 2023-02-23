@@ -71,10 +71,13 @@ public class Main {
         }
 
         System.out.println("\n~~~~~~~~~~~~~~");
-        System.out.println("Swordsman without shield");
-        Swordsman withoutshield = new Swordsman("A", new Sword(100, 20)
-               , new WithoutShield(), 100);
-        System.out.println(withoutshield);
+        System.out.println("Warriors without shield");
+        Swordsman withoutshield1 = new Swordsman("A", new Sword(100, 20)
+               , WithoutShield.getInstance(), 100);
+        System.out.println(withoutshield1);
+        Infantryman withoutshield2 = new Infantryman("A", new Halberd(100, 20)
+                , WithoutShield.getInstance(), 100);
+        System.out.println(withoutshield2);
     }
 }
 
