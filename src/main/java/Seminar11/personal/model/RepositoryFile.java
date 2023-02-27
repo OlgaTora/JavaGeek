@@ -3,9 +3,10 @@ package Seminar11.personal.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class RepositoryFile implements Repository {
-    private final Mapper mapper;
-    private final FileOperation fileOperation;
+    private Mapper mapper;
+    private FileOperation fileOperation;
 
     public RepositoryFile(FileOperation fileOperation, Mapper mapper) {
         this.fileOperation = fileOperation;
@@ -23,12 +24,12 @@ public class RepositoryFile implements Repository {
     }
 
     @Override
-    public void createUser(User user) {
+    public String CreateUser(User user) {
         List<User> users = getAllUsers();
         int max = 0;
         for (User item : users) {
             int id = Integer.parseInt(item.getId());
-            if (max < id) {
+            if (max < id){
                 max = id;
             }
         }
@@ -37,7 +38,9 @@ public class RepositoryFile implements Repository {
         user.setId(id);
         users.add(user);
         saveRepo(users);
+        return id;
     }
+
 
     private void saveRepo(List<User> users) {
         List<String> lines = new ArrayList<>();
@@ -64,18 +67,14 @@ public class RepositoryFile implements Repository {
 
     public void updateUser(String userId, User user) {
         List<User> users = getAllUsers();
-        User userForUpdate = null;
+
         for (User item : users
         ) {
             if (item.getId().equals(userId)) {
-                userForUpdate = item;
+                user.setId(userId);
+                users.set(Integer.parseInt(userId) - 1, user);
             }
-        }
-        if (userForUpdate != null) {
-            userForUpdate = user;
-
         }
         saveRepo(users);
     }
 }
-

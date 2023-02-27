@@ -17,29 +17,29 @@ public class UserController {
 
         public void saveUser(User user) throws Exception {
             validateUser.check(user);
-            repository.createUser(user);
+            repository.CreateUser(user);
         }
 
-        public User readUser(String userId) throws Exception {
-            List<User> users = repository.getAllUsers();
-            for (User user : users) {
-                if (user.getId().equals(userId)) {
-                    return user;
-                }
+    public User readUser(String userId) throws Exception {
+        List<User> users = repository.getAllUsers();
+        for (User user : users) {
+            if (user.getId().equals(userId)) {
+                return user;
             }
-
-            throw new Exception("User not found");
         }
-        public List<User> readUsers(){
-            return repository.getAllUsers();
+        throw new Exception("User not found");
     }
 
-    public void deleteUser(String userId){
-            repository.deleteUser(userId);
+    public List<User> readUsers() {
+        return repository.getAllUsers();
     }
 
-    public void updateUser(String userId, User user) {
-        //validateUser.check(user);
+    public void deleteUser(String userId) {
+        repository.deleteUser(userId);
+    }
+
+    public void updateUser(String userId, User user) throws Exception {
+        validateUser.check(user);
         repository.updateUser(userId, user);
     }
 }

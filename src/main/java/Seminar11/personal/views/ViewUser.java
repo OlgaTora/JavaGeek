@@ -20,8 +20,8 @@ public class ViewUser {
 
         while (true) {
             try {
-            String command = prompt("Введите команду: ");
-            com = Commands.valueOf(command.toUpperCase());
+                String command = prompt("Введите команду: ");
+                com = Commands.valueOf(command.toUpperCase());
                 if (com == Commands.EXIT) return;
                 switch (com) {
                     case CREATE -> createNewUser();
@@ -30,25 +30,23 @@ public class ViewUser {
                     case DELETE -> delete();
                     case UPDATE -> updateUserInfo();
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.printf("%s Error:\n ", e.getMessage());
-                            }
             }
         }
-
-    private void updateUserInfo(){
+    }
+    private void updateUserInfo() throws Exception {
         String id = prompt("Идентификатор пользователя: ");
         String firstName = prompt("Имя: ");
         String lastName = prompt("Фамилия: ");
         String phone = prompt("Номер телефона: ");
-        User user = new User(firstName, lastName, phone);
-        userController.updateUser(id, user);
+        userController.updateUser(id, new User(firstName, lastName, phone));
     }
 
     private void delete() {
         String id = prompt("Идентификатор пользователя: ");
         userController.deleteUser(id);
-        System.out.printf("%s You have deleted userId", id);
+        System.out.printf("You have deleted userId %s: \n", id);
     }
 
     private void createNewUser() throws Exception {
@@ -56,6 +54,14 @@ public class ViewUser {
         String lastName = prompt("Фамилия: ");
         String phone = prompt("Номер телефона: ");
         userController.saveUser(new User(firstName, lastName, phone));
+    }
+
+    private String saveSimbol() {
+        String pattern = prompt("""
+                Выберите символ - разделитель для сохранения:
+                ; , .
+                """);
+        return pattern;
     }
 
     private void getUserInfo() {
