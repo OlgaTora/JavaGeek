@@ -4,20 +4,22 @@ import java.util.regex.Pattern;
 
 public class ValidateUser {
     private final Pattern patternName = Pattern.compile("^\\S*$");
-    private final Pattern patternChar = Pattern.compile("^\\W*$");
+    private final Pattern patternChar = Pattern.compile("^[a-zA-Z]*$");
     private final Pattern patternPhone = Pattern.compile("^\\d*$");
 
+    public void checkName(String name) throws Exception {
+        if (!patternName.matcher(name).find()
+                || !patternChar.matcher(name).find()) {
+            throw new Exception("Not valid name: " + name);
+        }
+    }
+
     public void check(User user) throws Exception {
-        if (!patternName.matcher(user.getFirstName()).find()){
-    // | !patternChar.matcher(user.getFirstName()).find()){
-            throw new Exception("Not valid first name");
-        }
-        if (!patternName.matcher(user.getLastName()).find()){
-//                | !patternChar.matcher(user.getLastName()).find()){
-            throw new Exception("Not valid last name");
-        }
+        checkName(user.getFirstName());
+        checkName(user.getLastName());
+
         if (!patternPhone.matcher(user.getPhone()).find()) {
-            throw new Exception("Not valid phone number");
+            throw new Exception("Not valid phone");
         }
     }
 }

@@ -24,12 +24,12 @@ public class RepositoryFile implements Repository {
     }
 
     @Override
-    public String CreateUser(User user) {
+    public void createUser(User user, String pattern) {
         List<User> users = getAllUsers();
         int max = 0;
         for (User item : users) {
             int id = Integer.parseInt(item.getId());
-            if (max < id){
+            if (max < id) {
                 max = id;
             }
         }
@@ -37,15 +37,13 @@ public class RepositoryFile implements Repository {
         String id = String.format("%d", newId);
         user.setId(id);
         users.add(user);
-        saveRepo(users);
-        return id;
+        saveRepo(users, pattern);
     }
 
-
-    private void saveRepo(List<User> users) {
+    private void saveRepo(List<User> users, String pattern) {
         List<String> lines = new ArrayList<>();
         for (User item : users) {
-            lines.add(mapper.map(item));
+            lines.add(mapper.map(item, pattern));
         }
         fileOperation.saveAllLines(lines);
     }
@@ -62,7 +60,7 @@ public class RepositoryFile implements Repository {
         if (userForDelete != null) {
             users.remove(userForDelete);
         }
-        saveRepo(users);
+        saveRepo(users, ",");
     }
 
     public void updateUser(String userId, User user) {
@@ -75,6 +73,6 @@ public class RepositoryFile implements Repository {
                 users.set(Integer.parseInt(userId) - 1, user);
             }
         }
-        saveRepo(users);
+        saveRepo(users, ",");
     }
 }

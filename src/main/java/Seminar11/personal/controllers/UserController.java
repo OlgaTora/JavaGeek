@@ -7,18 +7,18 @@ import Seminar11.personal.model.ValidateUser;
 import java.util.List;
 
 public class UserController {
-        private final Repository repository;
-        private ValidateUser validateUser = new
-                ValidateUser();
+    private final Repository repository;
+    private ValidateUser validateUser = new
+            ValidateUser();
 
-        public UserController(Repository repository) {
-            this.repository = repository;
-        }
+    public UserController(Repository repository) {
+        this.repository = repository;
+    }
 
-        public void saveUser(User user) throws Exception {
-            validateUser.check(user);
-            repository.CreateUser(user);
-        }
+    public void saveUser(User user, String pattern) throws Exception {
+        validateUser.check(user);
+        repository.createUser(user, pattern);
+    }
 
     public User readUser(String userId) throws Exception {
         List<User> users = repository.getAllUsers();
