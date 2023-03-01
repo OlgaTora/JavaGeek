@@ -33,7 +33,7 @@ public class ViewUser {
 
         while (true) {
             try {
-                String command = prompt("Unput command: ");
+                String command = prompt("Input command: ");
                 com = Commands.valueOf(command.toUpperCase());
                 if (com == Commands.EXIT) return;
                 switch (com) {
