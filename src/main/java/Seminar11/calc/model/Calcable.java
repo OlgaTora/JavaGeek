@@ -1,7 +1,7 @@
 package Seminar11.calc.model;
 
 
-public interface Repository {
+public interface Calcable {
 
     void help();
 

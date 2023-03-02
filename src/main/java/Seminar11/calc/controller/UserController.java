@@ -4,19 +4,19 @@ import Seminar11.calc.model.*;
 
 
 public class UserController {
-    private final RepositoryRational repositoryRational;
-    private final RepositoryComplex repositoryComplex;
+    private final CalcRational calcRational;
+    private final CalcComplex calcComplex;
     private final Validator validateNumber = new
             Validator();
 
-    public UserController(RepositoryRational repoRational, RepositoryComplex repoComlex) {
-        this.repositoryRational = repoRational;
-        this.repositoryComplex = repoComlex;
+    public UserController(CalcRational repoRational, CalcComplex repoComlex) {
+        this.calcRational = repoRational;
+        this.calcComplex = repoComlex;
     }
 
     public Rational toRational(String number) throws Exception {
         validateNumber.checkRational(number);
-        Rational result = repositoryRational.toRational(number);
+        Rational result = calcRational.toRational(number);
         return result;
     }
 
@@ -24,14 +24,14 @@ public class UserController {
         Rational first = toRational(firstNumber);
         Rational second = toRational(secondNumber);
         validateNumber.checkSymbol(symbol);
-        String result = repositoryRational.calc(first, second, symbol).toString();
-        repositoryRational.saveResult(result);
+        String result = calcRational.calc(first, second, symbol).toString();
+        calcRational.saveResult(result);
         return result;
     }
 
     public Complex toComplex(String number) throws Exception {
         validateNumber.checkComplex(number);
-        Complex result = repositoryComplex.toComplex(number);
+        Complex result = calcComplex.toComplex(number);
         return result;
     }
 
@@ -39,13 +39,13 @@ public class UserController {
         Complex first = toComplex(firstNumber);
         Complex second = toComplex(secondNumber);
         validateNumber.checkSymbol(symbol);
-        String result = repositoryComplex.calc(first, second, symbol).toString();
-        repositoryRational.saveResult(result);
+        String result = calcComplex.calc(first, second, symbol).toString();
+        calcRational.saveResult(result);
         return result;
     }
 
     public void help() {
-        repositoryRational.help();
+        calcRational.help();
     }
 }
 

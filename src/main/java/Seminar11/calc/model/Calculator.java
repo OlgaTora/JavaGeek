@@ -1,13 +1,13 @@
 package Seminar11.calc.model;
 
-public abstract class RepositoryCalc implements Repository {
+public abstract class Calculator implements Calcable {
     public final String addition = "+";
     public final String subtract = "-";
     public final String multiply = "*";
     public final String division = "/";
     private final Logger logger;
 
-    public RepositoryCalc(Logger logger) {
+    public Calculator(Logger logger) {
         this.logger = logger;
     }
 

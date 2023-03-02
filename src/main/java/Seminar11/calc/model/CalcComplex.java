@@ -3,9 +3,9 @@ package Seminar11.calc.model;
 import java.util.List;
 import java.util.Objects;
 
-public class RepositoryComplex extends RepositoryCalc {
+public class CalcComplex extends Calculator {
 
-    public RepositoryComplex(Logger logger) {
+    public CalcComplex(Logger logger) {
         super(logger);
     }
 
