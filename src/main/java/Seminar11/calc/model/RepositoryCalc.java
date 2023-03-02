@@ -1,14 +1,15 @@
 package Seminar11.calc.model;
 
-public abstract class RepositoryCalc implements Repository{
-    private Logger logger;
+public abstract class RepositoryCalc implements Repository {
     public final String addition = "+";
     public final String subtract = "-";
     public final String multiply = "*";
     public final String division = "/";
+    private final Logger logger;
 
-    public RepositoryCalc(Logger logger){
-        this.logger = logger;}
+    public RepositoryCalc(Logger logger) {
+        this.logger = logger;
+    }
 
 
     @Override
@@ -16,9 +17,11 @@ public abstract class RepositoryCalc implements Repository{
         System.out.println("Help: i could work with rational" +
                 " and complex numbers! That's all");
     }
+
     public void saveResult(String result) {
         logger.saveLine(result);
     }
+
 
 }
 

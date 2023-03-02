@@ -39,6 +39,6 @@ public class Rational extends Number {
 
     @Override
     public String toString() {
-        return this.numerator+"\\"+this.denominator;
+        return this.numerator + "\\" + this.denominator;
     }
 }

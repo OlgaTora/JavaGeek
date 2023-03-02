@@ -1,5 +1,6 @@
 package Seminar11.calc.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class RepositoryRational extends RepositoryCalc {
@@ -7,7 +8,15 @@ public class RepositoryRational extends RepositoryCalc {
     public RepositoryRational(Logger logger) {
         super(logger);
     }
-    public Rational calcRational(Rational first, Rational second, String symbol) {
+
+    public Rational toRational(String number) {
+        List<String> numbers;
+        numbers = List.of(number.split("/"));
+        Rational rational = new Rational(Long.parseLong(numbers.get(0)), Long.parseLong(numbers.get(1)));
+        return rational;
+    }
+
+    public Rational calc(Rational first, Rational second, String symbol) {
         long numerator = 0, denominator = 1;
         long gcd = gcd(first.getNumerator(), first.getDenominator());
         long numerator1 = first.getNumerator() / gcd;
@@ -68,11 +77,5 @@ public class RepositoryRational extends RepositoryCalc {
             denominator = temp;
         }
         return numerator;
-    }
-
-
-    @Override
-    public Complex calcComplex(Complex first, Complex second, String symbol) {
-        return null;
     }
 }

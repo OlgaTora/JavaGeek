@@ -1,55 +1,51 @@
 package Seminar11.calc.controller;
-import Seminar11.calc.model.Complex;
-import Seminar11.calc.model.Rational;
-import Seminar11.calc.model.Repository;
-import Seminar11.calc.model.Validator;
 
-import java.util.List;
+import Seminar11.calc.model.*;
+
 
 public class UserController {
-
-    private final Repository repository;
+    private final RepositoryRational repositoryRational;
+    private final RepositoryComplex repositoryComplex;
     private final Validator validateNumber = new
             Validator();
 
-    public UserController(Repository repository){
-        this.repository = repository;
+    public UserController(RepositoryRational repoRational, RepositoryComplex repoComlex) {
+        this.repositoryRational = repoRational;
+        this.repositoryComplex = repoComlex;
     }
 
     public Rational toRational(String number) throws Exception {
         validateNumber.checkRational(number);
-        List<String> numbers;
-        numbers = List.of(number.split("/"));
-        Rational rational = new Rational(Long.parseLong(numbers.get(0)), Long.parseLong(numbers.get(1)));
-        return rational;
-    }
-
-    public String calc(Rational first, Rational second, String symbol) throws Exception {
-        validateNumber.checkSymbol(symbol);
-        String result = repository.calcRational(first, second, symbol).toString();
-        repository.saveResult(result);
+        Rational result = repositoryRational.toRational(number);
         return result;
     }
 
-    public String calc(Complex first, Complex second, String symbol) throws Exception {
+    public String calcRational(String firstNumber, String secondNumber, String symbol) throws Exception {
+        Rational first = toRational(firstNumber);
+        Rational second = toRational(secondNumber);
         validateNumber.checkSymbol(symbol);
-        String result = repository.calcComplex(first, second, symbol).toString();
-        repository.saveResult(result);
+        String result = repositoryRational.calc(first, second, symbol).toString();
+        repositoryRational.saveResult(result);
         return result;
-    }
-
-    public void help(){
-        repository.help();
     }
 
     public Complex toComplex(String number) throws Exception {
         validateNumber.checkComplex(number);
-        number = number.replace("j", "");
-        number = number.replace("+", "/");
-        List<String> numbers;
-        numbers = List.of(number.split("/"));
-        Complex complex = new Complex(Double.parseDouble(numbers.get(0)), Double.parseDouble(numbers.get(1)));
-        return complex;
+        Complex result = repositoryComplex.toComplex(number);
+        return result;
+    }
+
+    public String calcComplex(String firstNumber, String secondNumber, String symbol) throws Exception {
+        Complex first = toComplex(firstNumber);
+        Complex second = toComplex(secondNumber);
+        validateNumber.checkSymbol(symbol);
+        String result = repositoryComplex.calc(first, second, symbol).toString();
+        repositoryRational.saveResult(result);
+        return result;
+    }
+
+    public void help() {
+        repositoryRational.help();
     }
 }
 
