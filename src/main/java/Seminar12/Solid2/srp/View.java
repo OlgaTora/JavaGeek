@@ -4,7 +4,7 @@ import static Seminar12.Solid2.Utils.prompt;
 
 public class View {
 
-    public Order inputFromConsole(){
+    public Order inputFromConsole() {
         String clientName = prompt("Client name: ");
         String product = prompt("Product: ");
         int qnt = Integer.parseInt(prompt("Quantity: "));

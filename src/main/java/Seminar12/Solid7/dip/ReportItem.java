@@ -1,18 +1,20 @@
 package Seminar12.Solid7.dip;
 
 
-public class ReportItem{
+public class ReportItem {
     private String description;
     private float amount;
 
-    public ReportItem(String description, float amount){
+    public ReportItem(String description, float amount) {
         this.description = description;
         this.amount = amount;
     }
-    public String getDescription(){
+
+    public String getDescription() {
         return description;
     }
-    public float getAmount(){
+
+    public float getAmount() {
         return amount;
     }
 }

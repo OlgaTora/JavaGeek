@@ -13,4 +13,4 @@ public class TerminalPaymentService implements Cardable, WebMoneyable {
         System.out.printf("Terminal pay by credit card %d\n", amount);
     }
 
-    }
+}

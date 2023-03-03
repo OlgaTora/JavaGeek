@@ -1,7 +1,6 @@
 package Seminar12.Solid5;
 
 
-
 import Seminar12.Solid5.lsp.FactoryOrder;
 import Seminar12.Solid5.lsp.Orderable;
 
