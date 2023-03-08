@@ -1,5 +1,6 @@
 package Seminar12.Solid5.lsp;
-public class Order extends AbstractOrder{
+
+public class Order extends AbstractOrder {
 
 
     public Order(int qnt, int price) {
@@ -11,4 +12,4 @@ public class Order extends AbstractOrder{
     }
 
 
-    }
+}
