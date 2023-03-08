@@ -1,4 +1,4 @@
-package Final.model;
+package Final.model.help;
 
 public interface HelpMenu {
     void help();

@@ -1,4 +1,6 @@
-package Final.model;
+package Final.model.mapper;
+
+import Final.model.Note;
 
 public interface Mapper {
 

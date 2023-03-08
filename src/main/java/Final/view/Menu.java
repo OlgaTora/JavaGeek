@@ -9,5 +9,6 @@ public enum Menu {
     READ,
     HELP,
     CONTACT,
+    LOGGER,
     EXIT
 }

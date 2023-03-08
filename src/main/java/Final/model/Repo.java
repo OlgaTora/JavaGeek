@@ -14,4 +14,9 @@ public interface Repo {
     void updateHeading(String id, String heading) throws Exception;
 
     void updateContent(String id, String text) throws Exception;
+
+    List<String> readLogger();
+
+    void saveToLogger(Note note, String comment);
 }
+

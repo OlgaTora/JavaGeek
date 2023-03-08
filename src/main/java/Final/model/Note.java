@@ -1,20 +1,33 @@
 package Final.model;
 
-public class Note {
+import java.time.LocalDate;
+
+public class Note implements Dateable {
     private String id;
     private String uniqID;
     private String header;
     private String content;
-    public Note(String id, String uniqID, String header, String content) {
+    private String time;
+
+    public Note(String id, String uniqID, String header, String content, String time) {
         this.id = id;
         this.uniqID = uniqID;
         this.header = header;
         this.content = content;
+        this.time = time;
     }
 
     public Note(String header, String content) {
         this.header = header;
         this.content = content;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getId() {
@@ -45,7 +58,8 @@ public class Note {
         return String.format("""
                 UniqueId: %s
                 Heading: %s
-                Text: %s""", uniqID, header, content);
+                Time: %s
+                Text: %s""", uniqID, header, time, content);
     }
 
     public String getUniqID() {
@@ -55,4 +69,10 @@ public class Note {
     public void setUniqID(String uniqID) {
         this.uniqID = uniqID;
     }
+
+    @Override
+    public String currentTimestamp() {
+        return String.valueOf(LocalDate.now());
+    }
 }
+

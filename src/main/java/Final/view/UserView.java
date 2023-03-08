@@ -32,6 +32,7 @@ public class UserView {
                     case READALL -> readAll();
                     case READ -> read();
                     case CONTACT -> contact();
+                    case LOGGER -> readLogger();
                 }
             } catch (Exception e) {
                 System.out.printf("Error: %s\n ", e.getMessage());
@@ -39,7 +40,16 @@ public class UserView {
         }
     }
 
+    private void readLogger() {
+        List<String> logs = controller.readLogger();
+        for (String log : logs
+        ) {
+            System.out.println(log);
+        }
+    }
+
     private void contact() {
+        controller.contact();
     }
 
     private void create() {
@@ -68,8 +78,8 @@ public class UserView {
 
     private String choiceToUpdate() {
         String choiceUpdate = input("Choose field to update: " +
-                "1 - to update heading" +
-                "2- to update note");
+                "1 - to update heading\n" +
+                "2 - to update note");
         return choiceUpdate;
     }
 

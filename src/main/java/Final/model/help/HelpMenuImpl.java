@@ -1,4 +1,4 @@
-package Final.model;
+package Final.model.help;
 
 public class HelpMenuImpl implements HelpMenu {
     public void help() {
