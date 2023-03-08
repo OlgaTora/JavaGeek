@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileOperationsImpl implements FileOperations {
-    //private BaseLogger logger;
     private final String fileName;
 
     public FileOperationsImpl(String fileName) {
