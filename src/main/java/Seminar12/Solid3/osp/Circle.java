@@ -1,6 +1,6 @@
 package Seminar12.Solid3.osp;
 
-public class Circle implements Shape{
+public class Circle implements Shape {
     private int radius;
 
     public Circle(int radius) {

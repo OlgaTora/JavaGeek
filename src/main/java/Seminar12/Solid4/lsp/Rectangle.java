@@ -14,12 +14,12 @@ public class Rectangle {
         return sideA;
     }
 
-    public int getSideB() {
-        return sideB;
-    }
-
     public void setSideA(int sideA) {
         this.sideA = sideA;
+    }
+
+    public int getSideB() {
+        return sideB;
     }
 
     public void setSideB(int sideB) {
