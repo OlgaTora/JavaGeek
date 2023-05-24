@@ -9,7 +9,7 @@ import java.util.Random;
 Делаем проверку скорости сортировки для массива из 10000 элементов обоими способами.
 Реализуем бинарный поиск*/
 
-public class Seminar1 {
+public class Home1 {
     public static void main(String[] args) {
         int[] array = {5, 3, -8, 6, 11, 23, 2, -11, 1, 14, 10, -5, -2};
         System.out.println("List for check: " + Arrays.toString(array));
@@ -19,7 +19,7 @@ public class Seminar1 {
         int[] quickSortArray = quickSort(0, array.length - 1, array);
         System.out.println("Sorted quick sort list: " + Arrays.toString(quickSortArray));
         lines();
-                int[] selectSortArray = selectionSort(array);
+        int[] selectSortArray = selectionSort(array);
         System.out.println("Sorted selection sort list: " + Arrays.toString(selectSortArray));
         lines();
 
