@@ -17,12 +17,8 @@ public class Home2 {
             heapify(array, i, size);
         }
         for (int i = size - 1; i >=0 ; i--) {
-        //    swap(array, 0, i);
-            int tmp;
-            tmp = array[0];
-            array[0] = array[i];
-            array[i] = tmp;
-            heapify(array, 0, size);
+            swap(array, 0, i);
+            heapify(array, 0, i);
         }
     return array;
     }
@@ -38,20 +34,16 @@ public class Home2 {
             max = right;
         }
         if(max != i){
-            int tmp;
-            tmp = array[i];
-            array[i] = array[max];
-            array[max] = tmp;
-        heapify(array, max, size);
+            swap(array, max, i);
+            heapify(array, max, size);
         }
     }
 
-    public static int [] swap(int [] array, int first, int second){
+    public static void swap(int [] array, int first, int second){
         int tmp;
         tmp = array[first];
         array[first] = array[second];
         array[second] = tmp;
-        return array;
     }
 }
 
