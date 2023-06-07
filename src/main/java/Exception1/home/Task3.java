@@ -4,7 +4,7 @@ package Exception1.home;
 // входящих массивов в той же ячейке. Если длины массивов не равны, необходимо как-то оповестить пользователя.
 // Важно: При выполнении метода единственное исключение, которое пользователь может увидеть - RuntimeException, т.е. ваше.
 public class Task3 {
-    public static float[] getQuotient(int[] array1, int[] array2) {
+    public static float[] getQuotient(int[] array1, int[] array2) throws RuntimeException{
         if(array1.length == 0){
             throw new RuntimeException("Array 1 is null");
         }

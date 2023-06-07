@@ -18,17 +18,22 @@ public class Main {
         lines();
         System.out.println("Task 2");
         int[] array1 = {0, 1, 2};
-        int[] array2 = {3, 0, 5};
+        int[] array2 = {3, 2, 5};
         try {
             int[] resultDiff = getDiff(array1, array2);
             //    printArray(resultDiff);
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
+
         lines();
         System.out.println("Task 3");
-        float[] resultQuotient = getQuotient(array1, array2);
-        printArrayFloat(resultQuotient);
+        try {
+            float[] resultQuotient = getQuotient(array1, array2);
+            printArrayFloat(resultQuotient);
+        } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public static void lines() {
@@ -41,6 +46,7 @@ public class Main {
         }
         System.out.println();
     }
+
     public static void printArrayFloat(float[] result) {
         for (float v : result) {
             System.out.print(v + " ");
