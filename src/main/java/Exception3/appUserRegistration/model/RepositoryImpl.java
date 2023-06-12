@@ -9,7 +9,7 @@ public class RepositoryImpl implements Repository {
     private final FileOperations fileOperations;
     private final Utils utils;
 
-    private static final String PATH = "C:\\Users\\вяаы\\IdeaProjects\\JavaSeminars\\src\\main\\java\\Exception3\\home\\files\\";
+    private static final String PATH = "C:\\Users\\вяаы\\IdeaProjects\\JavaSeminars\\src\\main\\java\\Exception3\\appUserRegistration\\files\\";
 
     public RepositoryImpl(FileOperations fileOperations, Utils utils) {
         this.fileOperations = fileOperations;
@@ -72,20 +72,20 @@ public class RepositoryImpl implements Repository {
 
     private String checkName(ArrayList<String> FIO) {
         String result = "";
-        int counter = 0;
-        ArrayList<String> names = fileOperations.readFile("src/main/java/Exception3/home/files/name_rus.txt", "windows-1251");
+        boolean flag = false;
+        ArrayList<String> names = fileOperations.readFile("src/main/java/Exception3/appUserRegistration/files/name_rus.txt", "windows-1251");
         for (String elem : FIO
         ) {
             for (String name : names
             ) {
                 if (elem.toLowerCase().equals(name)) {
                     result = utils.firstLetterToUpperCase(elem);
-                    counter++;
+                    flag = true;
                     break;
                 }
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new RuntimeException("You have not input your name");
         }
         return result;
@@ -93,15 +93,15 @@ public class RepositoryImpl implements Repository {
 
     private String checkFatherName(ArrayList<String> FIO) {
         String result = "";
-        int counter = 0;
+        boolean flag = false;
         for (String elem : FIO
         ) {
             if (elem.endsWith("вич") | elem.endsWith("вна") | elem.endsWith("цкий") | elem.endsWith("цкая")) {
                 result = utils.firstLetterToUpperCase(elem);
-                counter++;
+                flag = true;
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new RuntimeException("You have not input your father name");
         }
         return result;
@@ -110,8 +110,8 @@ public class RepositoryImpl implements Repository {
 
     private String checkSurname(ArrayList<String> FIO) {
         String result = "";
-        int counter = 0;
-        ArrayList<String> names = fileOperations.readFile("src/main/java/Exception3/home/files/russian_surnames.txt", "UTF-8");
+        boolean flag = false;
+        ArrayList<String> names = fileOperations.readFile("src/main/java/Exception3/appUserRegistration/files/russian_surnames.txt", "UTF-8");
         for (String elem : FIO
         ) {
             for (String name : names
@@ -120,12 +120,12 @@ public class RepositoryImpl implements Repository {
                 if (elem.equals(name)) {
                     result = elem.toLowerCase();
                     result = utils.firstLetterToUpperCase(result);
-                    counter++;
+                    flag = true;
                     break;
                 }
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new RuntimeException("You have not input your surname");
         }
         return result;
@@ -133,17 +133,17 @@ public class RepositoryImpl implements Repository {
 
     private String checkPhone(String[] parts) throws AppExceptions.WrongPhoneFormat {
         String result = "";
-        int counter = 0;
+        boolean flag = false;
         for (String part : parts) {
             if (part.matches("[0-9]+")) {
-                counter++;
+                flag = true;
                 result = part;
                 if (result.length() != 10) {
                     throw new AppExceptions.WrongPhoneFormat();
                 }
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new RuntimeException("You haven't input your phone");
         }
         return result;
@@ -151,10 +151,10 @@ public class RepositoryImpl implements Repository {
 
     private String checkDate(String[] parts) throws DateTimeParseException {
         String result = "";
-        int counter = 0;
+        boolean flag = false;
         for (String part : parts) {
             if (part.contains(".")) {
-                counter++;
+                flag = true;
                 String[] partsDate = part.split("\\.");
                 if (partsDate.length != 3) {
                     throw new AppExceptions.WrongDateFormat("You've input wrong date format, you need two points");
@@ -164,7 +164,7 @@ public class RepositoryImpl implements Repository {
                 }
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new AppExceptions.WrongDateFormat("You haven't input your bithday");
         }
 
@@ -173,14 +173,14 @@ public class RepositoryImpl implements Repository {
 
     private String checkGender(String[] parts) {
         String result = "";
-        int counter = 0;
+        boolean flag = false;
         for (String part : parts) {
             if (part.equals("m") || part.equals("f")) {
-                counter++;
+                flag = true;
                 result = part;
             }
         }
-        if (counter == 0) {
+        if (!flag) {
             throw new IllegalArgumentException("You haven't input your male");
         }
         return result;
